@@ -10,6 +10,11 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = "No server was created!";
   serverName = 'TesteServer';
+  serverCreated = false;
+  servers = ['TestServer', 'TestServer 2'];
+  showSecret = false;
+  log = [];
+  username = '';
 
   constructor() {
 
@@ -23,7 +28,9 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer() {
-    this.serverCreationStatus = "Server was created!";
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
+    this.serverCreationStatus = "Server was created! Name is " + this.serverName;
   }
 
 
@@ -31,4 +38,12 @@ export class ServersComponent implements OnInit {
     console.log(event);
     this.serverName = (<HTMLInputElement>event.target).value;
   }
+
+  onToggleDetails() {
+this.showSecret = !this.showSecret;
+this.log.push(new Date());
+
+  }
+
+
 }
